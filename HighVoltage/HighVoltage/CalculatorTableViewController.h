@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  CalculatorTableViewController.h
 //  HighVoltage
 //
 //  Created by Donny Davis on 5/1/16.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface CalculatorTableViewController : UITableViewController
 
 @end
-
