@@ -7,8 +7,9 @@
 //
 
 #import "CalculatorTableViewController.h"
+#import "TypeSelectionViewController.h"
 
-@interface CalculatorTableViewController () <UIPopoverPresentationControllerDelegate>
+@interface CalculatorTableViewController () <UIPopoverPresentationControllerDelegate, TypeSelectionDelegate>
 
 @end
 
@@ -17,11 +18,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -45,6 +41,32 @@
     // Configure the cell...
     
     return cell;
+}
+
+#pragma mark - Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"AddVoltagePopover"]) {
+        TypeSelectionViewController *typeSelection = (TypeSelectionViewController *)[segue destinationViewController];
+        typeSelection.delegate = self;
+    }
+}
+
+#pragma mark - UIPopoverPresentationControllerDelegate
+
+- (void)popoverPresentationControllerDidDismissPopover:(UIPopoverPresentationController *)popoverPresentationController {
+    NSLog(@"Did dismiss popover");
+}
+
+- (UIModalPresentationStyle)adaptivePresentationStyleForPresentationController:(UIPresentationController *)controller {
+    return UIModalPresentationFullScreen;
+}
+
+#pragma mark - TypeSelectionDelegate
+
+- (void)returnSelectedType:(NSInteger)type andValue:(NSString *)value {
+    NSLog(@"Row: %ld", (long)type);
+    NSLog(@"Value: %@", value);
 }
 
 

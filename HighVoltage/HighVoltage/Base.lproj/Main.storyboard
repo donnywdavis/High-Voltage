@@ -155,10 +155,10 @@
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0gd-B7-aMR">
                                 <rect key="frame" x="20" y="72" width="560" height="216"/>
                             </pickerView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter value" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="F2t-yj-XzZ">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter value" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="F2t-yj-XzZ">
                                 <rect key="frame" x="150" y="296" width="300" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -172,9 +172,21 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="OrY-sy-cHs">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Mjv-rY-9jJ"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="uQb-xW-TbD"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Mjv-rY-9jJ">
+                            <connections>
+                                <action selector="cancelAction:" destination="BYZ-38-t0r" id="adH-in-B1S"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="uQb-xW-TbD">
+                            <connections>
+                                <action selector="doneAction:" destination="BYZ-38-t0r" id="4py-aq-Kbi"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="pickerView" destination="0gd-B7-aMR" id="yjL-tJ-47X"/>
+                        <outlet property="valueTextField" destination="F2t-yj-XzZ" id="unU-P6-Dcb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -214,7 +226,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nib-BF-ck6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1795" y="339"/>
+            <point key="canvasLocation" x="1846" y="339"/>
         </scene>
     </scenes>
 </document>
