@@ -35,6 +35,7 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
     NSInteger selectedPickerRow = [self.pickerView selectedRowInComponent:0];
     NSString *valueString = [[NSString alloc] initWithString:self.valueTextField.text];
     [self.delegate returnSelectedType:selectedPickerRow andValue:valueString];
