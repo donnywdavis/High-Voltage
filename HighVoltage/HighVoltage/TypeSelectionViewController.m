@@ -11,8 +11,6 @@
 @interface TypeSelectionViewController () <UIPickerViewDelegate, UIPickerViewDataSource>
 
 @property (strong, nonatomic) NSArray *types;
-@property (weak, nonatomic) IBOutlet UIPickerView *pickerView;
-@property (weak, nonatomic) IBOutlet UITextField *valueTextField;
 
 @end
 
@@ -34,12 +32,12 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    NSInteger selectedPickerRow = [self.pickerView selectedRowInComponent:0];
-    NSString *valueString = [[NSString alloc] initWithString:self.valueTextField.text];
-    [self.delegate returnSelectedType:selectedPickerRow andValue:valueString];
-}
+//- (void)viewWillDisappear:(BOOL)animated {
+//    [super viewWillDisappear:animated];
+//    NSInteger selectedPickerRow = [self.pickerView selectedRowInComponent:0];
+//    NSString *valueString = [[NSString alloc] initWithString:self.valueTextField.text];
+//    [self.delegate returnSelectedType:selectedPickerRow andValue:valueString];
+//}
 
 #pragma mark - UIPickerViewDelegate
 
@@ -67,6 +65,7 @@
 
 
 - (IBAction)doneAction:(UIBarButtonItem *)sender {
+    [self.delegate returnSelectedType:[self.pickerView selectedRowInComponent:0] andValue:self.valueTextField.text];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

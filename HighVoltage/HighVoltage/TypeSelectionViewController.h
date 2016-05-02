@@ -17,5 +17,7 @@
 @interface TypeSelectionViewController : UIViewController
 
 @property (strong, nonatomic) id<TypeSelectionDelegate> delegate;
+@property (strong, nonatomic) IBOutlet UIPickerView *pickerView;
+@property (strong, nonatomic) IBOutlet UITextField *valueTextField;
 
 @end
