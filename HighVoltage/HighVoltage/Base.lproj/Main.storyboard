@@ -207,7 +207,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="uQb-xW-TbD">
                             <connections>
-                                <action selector="doneAction:" destination="BYZ-38-t0r" id="4py-aq-Kbi"/>
+                                <segue destination="vUN-2I-Jjg" kind="unwind" unwindAction="doneButtonPressed:" id="gva-MS-HEb"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -217,6 +217,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <exit id="vUN-2I-Jjg" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2521" y="339"/>
         </scene>
@@ -254,7 +255,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nib-BF-ck6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1846" y="339"/>
+            <point key="canvasLocation" x="1761" y="339"/>
         </scene>
     </scenes>
 </document>

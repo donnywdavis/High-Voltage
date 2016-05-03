@@ -32,13 +32,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-//- (void)viewWillDisappear:(BOOL)animated {
-//    [super viewWillDisappear:animated];
-//    NSInteger selectedPickerRow = [self.pickerView selectedRowInComponent:0];
-//    NSString *valueString = [[NSString alloc] initWithString:self.valueTextField.text];
-//    [self.delegate returnSelectedType:selectedPickerRow andValue:valueString];
-//}
-
 #pragma mark - UIPickerViewDelegate
 
 - (nullable NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
@@ -60,12 +53,6 @@
 #pragma mark - Button Actions
 
 - (IBAction)cancelAction:(UIBarButtonItem *)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-
-- (IBAction)doneAction:(UIBarButtonItem *)sender {
-    [self.delegate returnSelectedType:[self.pickerView selectedRowInComponent:0] andValue:self.valueTextField.text];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

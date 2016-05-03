@@ -8,15 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol TypeSelectionDelegate <NSObject>
-@required
-- (void)returnSelectedType:(NSInteger)type andValue:(NSString *)value;
-
-@end
-
 @interface TypeSelectionViewController : UIViewController
 
-@property (strong, nonatomic) id<TypeSelectionDelegate> delegate;
 @property (strong, nonatomic) IBOutlet UIPickerView *pickerView;
 @property (strong, nonatomic) IBOutlet UITextField *valueTextField;
 

@@ -10,7 +10,7 @@
 #import "TypeSelectionViewController.h"
 #import "Calculator.h"
 
-@interface CalculatorTableViewController () <TypeSelectionDelegate, UIPopoverPresentationControllerDelegate>
+@interface CalculatorTableViewController () <UIPopoverPresentationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *wattsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *voltsLabel;
@@ -46,10 +46,6 @@
     
     self.selectedTypesArray = [[NSMutableArray alloc] init];
     
-    self.typesDictionary[@"watts"] = @52;
-    self.typesDictionary[@"volts"] = @10;
-    [self returnSelectedType:0 andValue:@"52"];
-    [self returnSelectedType:1 andValue:@"10"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -126,18 +122,58 @@
     [self setTextForLabels];
     self.addButton.enabled = YES;
     [self.selectedTypesArray removeAllObjects];
+    self.haveAmps = NO;
+    self.haveOhms = NO;
+    self.haveVolts = NO;
+    self.haveWatts = NO;
+}
+
+- (IBAction)doneButtonPressed:(UIStoryboardSegue *)segue {
+    self.typeSelectionVC = (TypeSelectionViewController *)segue.sourceViewController;
+    switch ([self.typeSelectionVC.pickerView selectedRowInComponent:0]) {
+        case 0:
+            self.wattsLabel.text = self.typeSelectionVC.valueTextField.text;
+            self.haveWatts = YES;
+            self.typesDictionary[@"watts"] = [NSNumber numberWithInteger:[self.typeSelectionVC.valueTextField.text integerValue]];
+            break;
+            
+        case 1:
+            self.voltsLabel.text = self.typeSelectionVC.valueTextField.text;
+            self.haveVolts = YES;
+            self.typesDictionary[@"volts"] = [NSNumber numberWithInteger:[self.typeSelectionVC.valueTextField.text integerValue]];
+            break;
+            
+        case 2:
+            self.ampsLabel.text = self.typeSelectionVC.valueTextField.text;
+            self.haveAmps = YES;
+            self.typesDictionary[@"amps"] = [NSNumber numberWithInteger:[self.typeSelectionVC.valueTextField.text integerValue]];
+            break;
+            
+        case 3:
+            self.ohmsLabel.text = self.typeSelectionVC.valueTextField.text;
+            self.haveOhms = YES;
+            self.typesDictionary[@"ohms"] = [NSNumber numberWithInteger:[self.typeSelectionVC.valueTextField.text integerValue]];
+            break;
+            
+        default:
+            break;
+    }
+    
+    [self.selectedTypesArray addObject:self.typeSelectionVC.valueTextField.text];
+    if (self.selectedTypesArray.count == 2) {
+        self.addButton.enabled = NO;
+        [self calculate];
+        [self setTextForLabels];
+    }
+    
+    [self.typeSelectionVC dismissViewControllerAnimated:YES completion:nil];
 }
 
 
 #pragma mark - UIPopoverPresentationControllerDelegate
 
-- (void)popoverPresentationControllerDidDismissPopover:(UIPopoverPresentationController *)popoverPresentationController {
-//    TypeSelectionViewController *typesVC = (TypeSelectionViewController *)popoverPresentationController.presentingViewController;
-//    [self returnSelectedType:[typesVC.pickerView selectedRowInComponent:0] andValue:typesVC.valueTextField.text];
-}
-
 - (UIModalPresentationStyle)adaptivePresentationStyleForPresentationController:(UIPresentationController *)controller {
-    return UIModalPresentationNone;
+    return UIModalPresentationFullScreen;
 }
 
 #pragma mark - TypeSelectionDelegate
@@ -178,8 +214,6 @@
         [self calculate];
         [self setTextForLabels];
     }
-    
-//    [self.typeSelectionVC dismissViewControllerAnimated:YES completion:nil];
 
 }
 
